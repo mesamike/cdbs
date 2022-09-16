@@ -32,7 +32,7 @@ int main ()
    if(!(authfile = fopen("auths.dat", "r")))
       perror("auths.dat"), exit(1);
 
-   printf("FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|DIST|BEARING|NOTE|FAC_ID|LAT|LON\n");
+   printf("APP_ID|FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|PRV_CALLS\n");
 
    while(fgets(buffer, BUFF_SIZE, authfile)) {
       memcpy(&auth2, &auth, sizeof(authorization));
