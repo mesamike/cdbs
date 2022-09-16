@@ -70,7 +70,7 @@ tidy:
 
 pristine:	clean 
 	mv am.txt am.old.txt
-	rm -f main ant app fac appidx facidx
+	rm -f main ant app fac appidx facidx auths
 
 diff:	clean
 	mv am.txt am.old.txt

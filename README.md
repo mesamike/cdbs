@@ -4,7 +4,7 @@ licensed AM band radio stations.
 
 Just clone the repo and type 'make', and you will end up with
 a vertical bar delimited file (suitable for loading into your
-favorite spreadsheet program) calld 'am.txt' of all the AM band radio stations in the USA.
+favorite spreadsheet program) called 'am.txt' of all the AM band radio stations in the USA.
 
 Other make targets:
 > make clean -- Deletes all the generated data files and the downloaded zip files.
