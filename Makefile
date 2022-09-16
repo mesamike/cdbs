@@ -1,86 +1,94 @@
-all:	clean am.txt
+fresh:	clean all
 
-same:	tidy am.txt
+all:	dfac.dat amdb.dat
+	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
+	cat update.txt > ./home/gentoo/radio/cdbs/amdb.txt
+	rm -f *.zip  
+	cat amdb.dat >> ./home/gentoo/radio/cdbs/amdb.txt
 
-am.txt:		main auths.dat call_sign_history.dat	
-	./main | sort -n > am.txt
+dfac.dat:	dfac	facility.dat
+	./dfac > dfac.dat
+	rm -f dfac_*.idx dfac.dbf
 
-main:	main.c cdbs.c cdbs.h dist.c dist.h
-	gcc -g -o main main.c cdbs.c dist.c -lm
+amdb.dat:	auths.dat call_sign_history.dat
+	./amdb > amdb.dat
 
-auths.dat:	auths ant.dat appl.dat fac.dat appidx.dat facidx.dat
+auths.dat:	 auths appidx.dat ant.dat facidx.dat
 	./auths | sort -n > auths.dat
 
-auths:	auths.c cdbs.c cdbs.h
-	gcc -o auths auths.c cdbs.c
+appidx.dat:	appidx appl.dat
+	./appidx > appidx.dat
 
-ant.dat:	ant am_ant_sys.dat
-	./ant > ant.dat
+facidx.dat:	facidx fac.dat
+	./facidx > facidx.dat
 
-ant:	ant.c  cdbs.c cdbs.h
-	gcc -g -o ant ant.c  cdbs.c
-
-am_ant_sys.dat:		am_ant_sys.zip	
-	unzip am_ant_sys.zip
-
-am_ant_sys.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/am_ant_sys.zip
-
-appl.dat:	app application.dat
-	./app > appl.dat
-
-app:	app.c cdbs.c cdbs.h
-	gcc -o app app.c cdbs.c
-
-application.dat:	application.zip	
-	unzip application.zip
-
-call_sign_history.zip:
-	wget  ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/call_sign_history.zip
-
-call_sign_history.dat:	call_sign_history.zip
-	unzip call_sign_history.zip
-
-application.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/application.zip
 
 fac.dat:	fac facility.dat
 	./fac > fac.dat
 
-fac:	fac.c cdbs.c cdbs.h
-	gcc -o fac fac.c cdbs.c
+ant.dat:	ant am_ant_sys.dat
+	./ant > ant.dat
 
-facility.dat:		facility.zip
+appl.dat:	 app application.dat
+	./app > appl.dat
+
+am_ant_sys.dat: am_ant_sys.zip
+	unzip am_ant_sys.zip
+	touch am_ant_sys.dat
+
+application.dat:	application.zip
+	unzip application.zip
+	touch application.dat
+
+facility.dat:	facility.zip
 	unzip facility.zip
+	touch facility.dat
 
+call_sign_history.dat:	call_sign_history.zip
+	unzip call_sign_history.zip
+	touch call_sign_history.dat
+
+application.zip:	
+	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/application.zip
+	
 facility.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/facility.zip
+	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/facility.zip
 
-appidx.dat:	appidx appl.dat
-	./appidx | sort -n  > appidx.dat
+am_ant_sys.zip:
+	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/am_ant_sys.zip
 
-appidx:	appidx.c cdbs.c cdbs.h
+call_sign_history.zip:
+	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/call_sign_history.zip
+
+	gcc -o amdb amdb.c cdbs.c
+
+antidx: antidx.c cdbs.c cdbs.h
+	gcc -o antidx antidx.c cdbs.c
+
+appidx: appidx.c cdbs.c cdbs.h
 	gcc -o appidx appidx.c cdbs.c
 
-facidx.dat:	facidx fac.dat
-	./facidx | sort -n  > facidx.dat
-
-facidx:	facidx.c cdbs.c cdbs.h
+facidx: facidx.c cdbs.c cdbs.h
 	gcc -o facidx facidx.c cdbs.c
 
+ant:    ant.c  cdbs.c cdbs.h
+	gcc -g -o ant ant.c  cdbs.c
+
+app:    app.c cdbs.c cdbs.h
+	gcc -o app app.c cdbs.c
+
+fac:    fac.c cdbs.c cdbs.h
+	gcc -o fac fac.c cdbs.c
+
+dfac:   dfac.c cdbs.c cdbs.h
+	gcc -o dfac dfac.c cdbs.c
+
+auths:  auths.c cdbs.c cdbs.h
+	gcc -o auths auths.c cdbs.c
+
 clean:
-	rm -f *.dat *.zip
+	rm -f *.dbf *.idx *.dat *.txt *.zip
 
-tidy:
-	rm -f *.dat
+pristine: clean
+	rm -f amdb dfac ant app fac appidx facidx auths
 
-pristine:	clean 
-	mv am.txt am.old.txt
-	rm -f main ant app fac appidx facidx auths
-
-diff:	clean
-	mv am.txt am.old.txt
-	make 
-	diff am.old.txt am.txt > am.diff.txt
-
-	

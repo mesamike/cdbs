@@ -4,6 +4,16 @@
 #include "dist.h"
 
 #define BUFF_SIZE 1024
+
+typedef struct {
+   char begin_date[20];
+   char callsign[13];
+   unsigned long hist_id;
+   unsigned short seq_id;
+   unsigned long fac_id;
+   char change_date[20];
+} callsign_hist;
+
 typedef struct {
    unsigned long app_id;
    unsigned long fac_id;
@@ -121,7 +131,9 @@ typedef struct {
 } facility;
 
 
-application *parse_application(char *, application *);
-am_ant_sys *parse_am_ant_sys(char *, am_ant_sys *);
-facility *parse_facility(char *, facility *);
+void parse_application(char *, application *);
+void parse_am_ant_sys(char *, am_ant_sys *);
+void parse_facility(char *, facility *);
+void parse_authorization(char *, authorization *);
+void parse_callhist(char *, callsign_hist *);
 #endif

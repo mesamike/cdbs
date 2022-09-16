@@ -6,7 +6,7 @@
 
 FILE *authfile;
 
-print_line(power *pwr, authorization *auth)
+int print_line(power *pwr, authorization *auth)
 {
          printf("%ld|%ld|%04d|%s|%s|%s|", 
             auth->app_id, auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
@@ -21,7 +21,7 @@ print_line(power *pwr, authorization *auth)
        
 
 
-main ()
+int main ()
 {
    authorization auth, auth2;
    unsigned long cur_app_id = 0;
@@ -31,6 +31,8 @@ main ()
 
    if(!(authfile = fopen("auths.dat", "r")))
       perror("auths.dat"), exit(1);
+
+   printf("FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|DIST|BEARING|NOTE|FAC_ID|LAT|LON\n");
 
    while(fgets(buffer, BUFF_SIZE, authfile)) {
       memcpy(&auth2, &auth, sizeof(authorization));

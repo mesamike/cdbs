@@ -3,7 +3,38 @@
 #include "cdbs.h"
 #include <stdio.h>
 
-application *parse_application(char *buffer, application *ap)
+void parse_callhist(char *buffer, callsign_hist *ch)
+{
+   char *p1=buffer, *p2;
+
+   /* begin date */
+   *(p2 = strchr(p1, '|')) = 0;
+   strcpy (ch->begin_date, p1);
+ 
+   /* callsign */
+   *(p2 = strchr(p1, '|')) = 0;
+   strcpy (ch->callsign, p1);
+
+   /* hist_id */
+   *(p2 = strchr(p1, '|')) = 0;
+   ch->hist_id = atoi(p1);
+
+   /* seq_id */
+   *(p2 = strchr(p1, '|')) = 0;
+   ch->seq_id = atoi(p1);
+
+   /* fac_id */
+   *(p2 = strchr(p1, '|')) = 0;
+   ch->fac_id = atoi(p1);
+
+   /* change_date */
+   *(p2 = strchr(p1, '|')) = 0;
+   strcpy(ch->change_date, p1);
+}
+
+
+
+void parse_application(char *buffer, application *ap)
 {
    char *p1=buffer, *p2;
 
@@ -67,8 +98,8 @@ application *parse_application(char *buffer, application *ap)
 
 }
    
-am_ant_sys *parse_am_ant_sys(char *buffer, am_ant_sys *ant)
-   {	
+void parse_am_ant_sys(char *buffer, am_ant_sys *ant)
+{	
    char *p1=buffer, *p2;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(ant->ant_mode, p1);
@@ -187,11 +218,9 @@ am_ant_sys *parse_am_ant_sys(char *buffer, am_ant_sys *ant)
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(ant->last_change_date, p1);
-
-   return ant;
 }
 
-authorization *parse_authorization(char *buffer, authorization *auth)
+void parse_authorization(char *buffer, authorization *auth)
 {
    /* app_id */
    auth->app_id = atol(strtok(buffer, "|"));
@@ -225,11 +254,9 @@ authorization *parse_authorization(char *buffer, authorization *auth)
 
    /* status */
    strcpy(auth->status, strtok(0, "|"));
-
-   return auth;
 }
 
-facility *parse_facility(char *buffer, facility *fac)
+void parse_facility(char *buffer, facility *fac)
 {
    char *p1=buffer, *p2;
 
@@ -341,8 +368,6 @@ facility *parse_facility(char *buffer, facility *fac)
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->last_change_date, p1);
-
-   return fac;
 }
    
    
