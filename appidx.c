@@ -7,7 +7,7 @@
 FILE *appfile;
 char buffer[BUFF_SIZE];	
 
-main ()
+int main ()
 {
    long idx;
    application ap;

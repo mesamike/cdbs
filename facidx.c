@@ -7,7 +7,7 @@
 FILE *facfile;
 char buffer[BUFF_SIZE];	
 
-main ()
+int main ()
 {
    long idx;
    facility fac;

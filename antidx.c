@@ -7,7 +7,7 @@
 FILE *antfile;
 char buffer[BUFF_SIZE];	
 
-main ()
+int main ()
 {
    long idx;
    am_ant_sys ant;

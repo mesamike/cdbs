@@ -35,7 +35,7 @@ print_line(power *pwr, authorization *auth)
        
 
 
-main ()
+int main ()
 {
    authorization auth, auth2;
    unsigned long cur_app_id = 0;

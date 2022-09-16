@@ -9,7 +9,7 @@ char buffer[1024];
 char buffer2[1024];	
 
 
-main ()
+int main ()
 {
    am_ant_sys ant;
 

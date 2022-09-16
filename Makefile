@@ -36,7 +36,7 @@ application.dat:	application.zip
 	unzip application.zip
 
 call_sign_history.zip:
-	wget https://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/call_sign_history.zip
+	wget  ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/call_sign_history.zip
 
 call_sign_history.dat:	call_sign_history.zip
 	unzip call_sign_history.zip

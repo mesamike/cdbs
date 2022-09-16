@@ -44,7 +44,7 @@ int get_app(unsigned long app_id, application *app)
    return 0;
 }
 
-main ()
+int main ()
 {
    char buffer[BUFF_SIZE];	
    facility fac;
@@ -72,8 +72,8 @@ main ()
             printf("%ld|%ld|%f|%s|%s|%s|%c|%f|%7.4f|%8.4f|%s|\n",
                app.app_id, app.fac_id, app.fac_freq, fac.fac_callsign, app.comm_state,
                app.comm_city, ant.hours_operation, ant.power, lat, lon, fac.fac_status);
-         } else fprintf(stderr, "Cant find facility %lu\n", app.fac_id);
-      } else fprintf(stderr, "Can't find app_id %lu\n", ant.app_id);  
+         } /* else fprintf(stderr, "Cant find facility %lu\n", app.fac_id); */
+      } /* else fprintf(stderr, "Can't find app_id %lu\n", ant.app_id); */  
    }
    fclose(antfile);
    fclose(appfile);
