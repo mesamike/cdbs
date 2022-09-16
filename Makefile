@@ -2,7 +2,7 @@ all:	clean am.txt
 
 same:	tidy am.txt
 
-am.txt:		main auths.dat	
+am.txt:		main auths.dat call_sign_history.dat	
 	./main | sort -n > am.txt
 
 main:	main.c cdbs.c cdbs.h dist.c dist.h
@@ -34,6 +34,12 @@ app:	app.c cdbs.c cdbs.h
 
 application.dat:	application.zip	
 	unzip application.zip
+
+call_sign_history.zip:
+	wget https://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/call_sign_history.zip
+
+call_sign_history.dat:	call_sign_history.zip
+	unzip call_sign_history.zip
 
 application.zip:
 	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/application.zip
