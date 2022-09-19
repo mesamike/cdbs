@@ -11,7 +11,8 @@ dfac.dat:	dfac	facility.dat
 	rm -f dfac_*.idx dfac.dbf
 
 amdb.dat: amdb auths.dat call_sign_history.dat
-	./amdb > amdb.dat
+	./amdb > amdb.tmp
+	mv amdb.tmp amdb.dat
 
 auths.dat: auths appidx.dat ant.dat facidx.dat
 	./auths | sort -n > auths.dat
