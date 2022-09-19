@@ -21,10 +21,12 @@ void get_callsigns(int facid, char *call)
    while(fgets(buffer, BUFF_SIZE, callhistfile)) {
       parse_callhist(buffer, &ch); 
       if(ch.fac_id == facid) { 
-         if(strcmp(call, ch.callsign)) {
-            if(strlen(callhistory))
-              strcat(callhistory, ", ");
-            strcat(callhistory, ch.callsign); 
+         if(strcmp(call, ch.callsign)) { /* don't include current callsign */
+            if(strlen(ch.callsign) < 6) { /* filter out temporary callsings, accept deleted callsigns */
+               if(strlen(callhistory))
+                 strcat(callhistory, ", ");
+               strcat(callhistory, ch.callsign); 
+            }
          }
       }
    }
