@@ -1,7 +1,6 @@
 #ifndef CDBS_H
 #define CDBS_H
 
-#include "dist.h"
 
 #define BUFF_SIZE 1024
 
