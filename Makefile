@@ -2,9 +2,9 @@ fresh:	clean all
 
 all:	dfac.dat amdb.dat
 	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
-	cat update.txt > ./home/gentoo/radio/cdbs/amdb.txt
+	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
 	rm -f *.zip  
-	cat amdb.dat >> ./home/gentoo/radio/cdbs/amdb.txt
+	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
 
 dfac.dat:	dfac	facility.dat
 	./dfac > dfac.dat
