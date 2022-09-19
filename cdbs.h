@@ -96,8 +96,6 @@ typedef struct power_t {
    float p;
    float r;
    float u;
-   polar_coords geodelta;
-   struct power_t *next;
 } power;
 
 typedef struct {

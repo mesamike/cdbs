@@ -10,41 +10,41 @@ dfac.dat:	dfac	facility.dat
 	./dfac > dfac.dat
 	rm -f dfac_*.idx dfac.dbf
 
-amdb.dat:	auths.dat call_sign_history.dat
+amdb.dat: amdb auths.dat call_sign_history.dat
 	./amdb > amdb.dat
 
-auths.dat:	 auths appidx.dat ant.dat facidx.dat
+auths.dat: auths appidx.dat ant.dat facidx.dat
 	./auths | sort -n > auths.dat
 
-appidx.dat:	appidx appl.dat
+appidx.dat: appidx appl.dat
 	./appidx > appidx.dat
 
-facidx.dat:	facidx fac.dat
+facidx.dat: facidx fac.dat
 	./facidx > facidx.dat
 
 
-fac.dat:	fac facility.dat
+fac.dat: fac facility.dat
 	./fac > fac.dat
 
-ant.dat:	ant am_ant_sys.dat
+ant.dat: ant am_ant_sys.dat
 	./ant > ant.dat
 
-appl.dat:	 app application.dat
+appl.dat: app app application.dat
 	./app > appl.dat
 
 am_ant_sys.dat: am_ant_sys.zip
 	unzip am_ant_sys.zip
 	touch am_ant_sys.dat
 
-application.dat:	application.zip
+application.dat: application.zip
 	unzip application.zip
 	touch application.dat
 
-facility.dat:	facility.zip
+facility.dat: facility.zip
 	unzip facility.zip
 	touch facility.dat
 
-call_sign_history.dat:	call_sign_history.zip
+call_sign_history.dat: call_sign_history.zip
 	unzip call_sign_history.zip
 	touch call_sign_history.dat
 
@@ -60,6 +60,7 @@ am_ant_sys.zip:
 call_sign_history.zip:
 	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/call_sign_history.zip
 
+amdb:   amdb.c
 	gcc -o amdb amdb.c cdbs.c
 
 antidx: antidx.c cdbs.c cdbs.h
