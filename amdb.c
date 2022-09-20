@@ -13,21 +13,34 @@ void get_callsigns(int facid, char *call)
 {
    callsign_hist ch;
    char buffer[BUFF_SIZE];
+   char prev[13];
 
    if(!(callhistfile = fopen("call_sign_history.dat", "r")))
       perror("call_sign_history.dat"), exit(1);
    
    bzero(callhistory, sizeof(callhistory));
+   bzero(prev, sizeof(prev));
+
+   /* run through call history file looking for entries that match our facility id */
    while(fgets(buffer, BUFF_SIZE, callhistfile)) {
       parse_callhist(buffer, &ch); 
       if(ch.fac_id == facid) { 
-            if(strlen(ch.callsign) < 6) { /* filter out temporary callsings, accept deleted callsigns */
-               if(strlen(callhistory))
-                 strcat(callhistory, ", ");
-               strcat(callhistory, ch.callsign); 
-            }
+
+      /* if we found a callsign previously, save it */
+         if(strlen(prev)) {
+            if(strlen(callhistory))
+               strcat(callhistory, ", ");
+            strcat(callhistory, prev); 
+          }
+          /* callsign from current entry becomes previous call sign next time around */
+          if(strlen(ch.callsign) < 7)  /* filter out temporary callsings, accept deleted callsigns */
+             strcpy(prev, ch.callsign);
+          else strcpy(prev, ""); /* don't save previous call sign again next time around */
       }
    }
+   /* no more call signs found, don't save the last one we 
+      found because it's the same as the current facility callsign */
+   
    fclose(callhistfile);
 }
 
