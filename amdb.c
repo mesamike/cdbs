@@ -47,8 +47,10 @@ void get_callsigns(int facid, char *call)
 
 int print_line(power *pwr, authorization *auth, char *callhist)
 {
-         printf("%ld|%ld|%04d|%s|%s|%s|", 
-            auth->app_id, auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
+//         printf("%ld|%ld|%04d|%s|%s|%s|", 
+         printf("%ld|%04d|%s|%s|%s|", 
+//            auth->app_id, auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
+            auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
          if(pwr->d) printf("%.0f", pwr->d);
          putchar('|');
          if(pwr->n) printf("%.0f", pwr->n);
@@ -78,7 +80,7 @@ int main ()
    if(!(authfile = fopen("auths.dat", "r")))
       perror("auths.dat"), exit(1);
 
-   printf("APP_ID|FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST\n");
+   printf("FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST\n");
 
    while(fgets(buffer, BUFF_SIZE, authfile)) {
       memcpy(&auth2, &auth, sizeof(authorization));
