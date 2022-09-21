@@ -15,7 +15,7 @@ amdb.dat: amdb auths.dat call_sign_history.dat
 	mv amdb.tmp amdb.dat
 
 auths.dat: auths appidx.dat ant.dat facidx.dat
-	./auths | sort -n > auths.dat
+	./auths | sort -n -k 1,1 -k 2,2  -t '|' > auths.dat
 
 appidx.dat: appidx appl.dat
 	./appidx > appidx.dat

@@ -229,11 +229,12 @@ void parse_am_ant_sys(char *buffer, am_ant_sys *ant)
 
 void parse_authorization(char *buffer, authorization *auth)
 {
-   /* app_id */
-   auth->app_id = atol(strtok(buffer, "|"));
 
    /* fac_id */
-   auth->fac_id = atol(strtok(0, "|"));
+   auth->fac_id = atol(strtok(buffer, "|"));
+
+   /* app_id */
+   auth->app_id = atol(strtok(0, "|"));
 
    /* freq */
    auth->freq = atof(strtok(0, "|")); 

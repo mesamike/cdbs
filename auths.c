@@ -70,7 +70,7 @@ int main ()
             float lat = (ant.lat_dir == 'N'?1.0:-1.0) * (ant.lat_deg + ant.lat_min/60.0 + ant.lat_sec/3600);
             float lon = (ant.lon_dir == 'E'?1.0:-1.0) * (ant.lon_deg + ant.lon_min/60.0 + ant.lon_sec/3600);
             printf("%ld|%ld|%f|%s|%s|%s|%c|%f|%7.4f|%8.4f|%s|\n",
-               app.app_id, app.fac_id, app.fac_freq, fac.fac_callsign, app.comm_state,
+               app.fac_id, app.app_id, app.fac_freq, fac.fac_callsign, app.comm_state,
                app.comm_city, ant.hours_operation, ant.power, lat, lon, fac.fac_status);
          } /* else fprintf(stderr, "Cant find facility %lu\n", app.fac_id); */
       } /* else fprintf(stderr, "Can't find app_id %lu\n", ant.app_id); */  
