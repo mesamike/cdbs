@@ -90,7 +90,8 @@ int main ()
          bzero(&pwr, sizeof(power));
       }
 */
-      if( (auth.fac_id!=cur_fac_id) || (auth.lat!=cur_lat) || (auth.lon!=cur_lon) ) {
+      /* new entry if different facility or different transmitter site */
+      if( (auth.fac_id!=cur_fac_id) || (abs(auth.lat-cur_lat)>0.01)  || (abs(auth.lon-cur_lon)>0.01) ) {
          if(cur_fac_id) print_line(&pwr, &auth2, callhistory);
          cur_fac_id = auth.fac_id;
          cur_lat = auth.lat;
