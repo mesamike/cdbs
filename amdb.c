@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "cdbs.h"
 
@@ -91,7 +92,7 @@ int main ()
       }
 */
       /* new entry if different facility or different transmitter site */
-      if( (auth.fac_id!=cur_fac_id) || (abs(auth.lat-cur_lat)>0.01)  || (abs(auth.lon-cur_lon)>0.01) ) {
+      if( (auth.fac_id!=cur_fac_id) || (fabs(auth.lat-cur_lat)>0.01)  || (fabs(auth.lon-cur_lon)>0.01) ) {
          if(cur_fac_id) print_line(&pwr, &auth2, callhistory);
          cur_fac_id = auth.fac_id;
          cur_lat = auth.lat;
