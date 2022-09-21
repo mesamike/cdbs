@@ -67,7 +67,9 @@ int print_line(power *pwr, authorization *auth, char *callhist)
 int main ()
 {
    authorization auth, auth2;
-   unsigned long cur_app_id = 0;
+   unsigned long cur_fac_id = 0;
+   float cur_lat;
+   float cur_lon;
    power pwr;
    float watts;
    char buffer[BUFF_SIZE];
@@ -80,9 +82,19 @@ int main ()
    while(fgets(buffer, BUFF_SIZE, authfile)) {
       memcpy(&auth2, &auth, sizeof(authorization));
       parse_authorization(buffer, &auth); 
+
+/*
       if(auth.app_id != cur_app_id) {
          if(cur_app_id) print_line(&pwr, &auth2, callhistory);
          cur_app_id = auth.app_id;
+         bzero(&pwr, sizeof(power));
+      }
+*/
+      if( (auth.fac_id!=cur_fac_id) || (auth.lat!=cur_lat) || (auth.lon!=cur_lon) ) {
+         if(cur_fac_id) print_line(&pwr, &auth2, callhistory);
+         cur_fac_id = auth.fac_id;
+         cur_lat = auth.lat;
+         cur_lon = auth.lon;
          bzero(&pwr, sizeof(power));
       }
 
