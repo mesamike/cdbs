@@ -4,7 +4,7 @@ all:	dfac.dat amdb.dat
 	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
 	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
 	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
-	rm  am_ant_sys.dat appliciation.dat  facility.dat call_sign_history.dat
+	rm  am_ant_sys.dat application.dat  facility.dat call_sign_history.dat
 
 dfac.dat:	dfac	facility.dat
 	./dfac > dfac.dat
