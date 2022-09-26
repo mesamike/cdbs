@@ -19,11 +19,7 @@ int main ()
       parse_am_ant_sys(buffer2, &ant);
       if((ant.hours_operation != 'X') 
          && (ant.eng_rec_type == 'C')
-         && ((ant.am_dom_status == 'L') ||
-             (ant.am_dom_status == 'C') ||
-             (ant.am_dom_status == 'M') ||
-             (ant.am_dom_status == 'S') 
-            ))
+         && ((ant.am_dom_status == 'L') ))
             printf("%s", buffer);
       }
    fclose(antfile);

@@ -3,8 +3,8 @@ fresh:	clean all
 all:	dfac.dat amdb.dat
 	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
 	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
-	rm -f *.zip  
 	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
+	rm  am_ant_sys.dat appliciation.dat  facility.dat call_sign_history.dat
 
 dfac.dat:	dfac	facility.dat
 	./dfac > dfac.dat
@@ -35,19 +35,19 @@ appl.dat: app app application.dat
 
 am_ant_sys.dat: am_ant_sys.zip
 	unzip am_ant_sys.zip
-	touch am_ant_sys.dat
+#	touch am_ant_sys.dat
 
 application.dat: application.zip
 	unzip application.zip
-	touch application.dat
+#	touch application.dat
 
 facility.dat: facility.zip
 	unzip facility.zip
-	touch facility.dat
+#	touch facility.dat
 
 call_sign_history.dat: call_sign_history.zip
 	unzip call_sign_history.zip
-	touch call_sign_history.dat
+#	touch call_sign_history.dat
 
 application.zip:	
 	wget --no-check-certificate https://transition.fcc.gov/Bureaus/MB/Databases/cdbs/application.zip
