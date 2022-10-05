@@ -26,17 +26,19 @@ void get_callsigns(int facid, char *call)
    while(fgets(buffer, BUFF_SIZE, callhistfile)) {
       parse_callhist(buffer, &ch); 
       if(ch.fac_id == facid) { 
-
-      /* if we found a callsign previously, save it */
-         if(strlen(prev)) {
+         char *call = ch.callsign; 
+         /* if callsign starts with D (deleted), remove the D */ 
+         if(call[0] == 'D') call++;
+         /* if we found a callsign previously and it's different from new one, save it */
+         if(strlen(prev) && strcmp(prev, ch.callsign)) {
             if(strlen(callhistory))
                strcat(callhistory, ", ");
             strcat(callhistory, prev); 
           }
           /* callsign from current entry becomes previous call sign next time around */
-          if(strlen(ch.callsign) < 7)  /* filter out temporary callsings, accept deleted callsigns */
-             strcpy(prev, ch.callsign);
-          else strcpy(prev, ""); /* don't save previous call sign again next time around */
+          if(strlen(call) < 5)  /* filter out temporary callsigns */
+             strcpy(prev, call);
+          // else strcpy(prev, ""); /* don't save previous call sign again next time around */
       }
    }
    /* no more call signs found, don't save the last one we 
