@@ -268,111 +268,119 @@ void parse_facility(char *buffer, facility *fac)
 {
    char *p1=buffer, *p2;
 
-   /* comm_city */
+   /* 1: comm_city */
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->comm_city, p1);
 
-   /* comm_state */
+   /* 2: comm_state */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->comm_state, p1);
    
-   /*eeo_rpt_ind */
+   /* 3: eeo_rpt_ind */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    
-   /*fac_address1 */
+   /* 4: fac_address1 */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* fac_address2 */
+   /* 5: fac_address2 */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    
-   /* fac_callsign */
+   /* 6: fac_callsign */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->fac_callsign, p1);
 
-  /* fac_channel */
+  /* 7: fac_channel */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* fac_city */
+   /* 8: fac_city */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    
-   /*fac_country */
+   /* 9: fac_country */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->fac_country, p1);
 
-   /* fac_frequency */
+   /* 10: fac_frequency */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    fac->fac_frequency = atoi(p1);
 
-   /* fac_service */
+   /* 11: fac_service */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->fac_service, p1);
 
-   /* fac_state */
+   /* 12: fac_state */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    
-   /* fac_status_date */
+   /* 13: fac_status_date */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* fac_type */
+   /* 14: fac_type */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->fac_type, p1);
 
-   /* facility_id */
+   /* 15: facility_id */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    fac->facility_id = atoi(p1);
 
-   /* lic_expiration_date */
+   /* 16: lic_expiration_date */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* fac_status */
+   /* 17: fac_status */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->fac_status, p1);
 
-   /* fac_zip1 */
+   /* 18: fac_zip1 */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* fac_zip2 */
+   /* 19: fac_zip2 */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* station_type */
+   /* 20: station_type */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* assoc_facility_id */
+   /* 21: assoc_facility_id */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* callsign_eff_date */
+   /* 22: callsign_eff_date */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* unused1 */
+   /* 23: tsid_ntsc */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* unused2 */
+   /* 24: tsid_dtv */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
 
-   /* last_change_date */
+   /* 25: digital_status */
+   p1 = p2+1;
+   *(p2 = strchr(p1, '|')) = 0;
+
+   /* 26: sat_tv */
+   p1 = p2+1;
+   *(p2 = strchr(p1, '|')) = 0;
+
+   /* 27: last_change_date */
    p1 = p2+1;
    *(p2 = strchr(p1, '|')) = 0;
    strcpy(fac->last_change_date, p1);

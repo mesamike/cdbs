@@ -10,7 +10,7 @@ FILE *callhistfile;
 static char callhistory[256];
 
 
-void get_callsigns(int facid, char *call)
+void get_callsigns(int facid)
 {
    callsign_hist ch;
    char buffer[BUFF_SIZE];
@@ -82,7 +82,6 @@ int main ()
    if(!(authfile = fopen("auths.dat", "r")))
       perror("auths.dat"), exit(1);
 
-   printf("FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST\n");
 
    while(fgets(buffer, BUFF_SIZE, authfile)) {
       memcpy(&auth2, &auth, sizeof(authorization));
@@ -105,7 +104,7 @@ int main ()
       }
 
 
-      get_callsigns(auth.fac_id, auth.callsign);
+      get_callsigns(auth.fac_id);
       watts = auth.power*1000.0;
       switch(auth.hours_operation) {
          case 'U': pwr.d = pwr.n = watts; break;

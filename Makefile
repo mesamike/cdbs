@@ -1,12 +1,16 @@
 fresh:	clean all
 
 all:	dfac.dat amdb.dat
-	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
-	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
-#	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
+	make delimited
 	rm  am_ant_sys.dat application.dat  facility.dat call_sign_history.dat
 
-dfac.dat:	dfac	facility.dat
+delimited:
+	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
+	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
+	echo "FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST" >> /home/gentoo/radio/cdbs/amdb.txt
+	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
+
+dfac.dat: dfac facility.dat call_sign_history.dat
 	./dfac > dfac.dat
 	rm -f dfac_*.idx dfac.dbf
 
