@@ -94,6 +94,7 @@ auths:  auths.c cdbs.c cdbs.h
 
 clean:
 	rm -f *.dbf *.idx *.dat *.txt *.zip
+	git pull
 
 pristine: clean
 	rm -f amdb dfac ant app fac appidx facidx auths
