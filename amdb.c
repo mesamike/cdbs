@@ -94,6 +94,11 @@ int main ()
          bzero(&pwr, sizeof(power));
       }
 */
+
+      /* workaround for night auths that don't specify coords */ 
+      if( (auth.lat==0.0) && (auth.lon ==0.0) ){
+         auth.lat = cur_lat; auth.lon = cur_lon;
+      }
       /* new entry if different facility or different transmitter site */
       if( (auth.fac_id!=cur_fac_id) || (fabs(auth.lat-cur_lat)>0.01)  || (fabs(auth.lon-cur_lon)>0.01) ) {
          if(cur_fac_id) print_line(&pwr, &auth2, callhistory);
