@@ -1,3 +1,7 @@
+
+install: fresh
+	scp *.dat update.txt rebuild gentoo@gentoo.net:~/mivadata/cdbs
+
 fresh:	clean all
 
 all:	dfac.dat amdb.dat
@@ -93,8 +97,7 @@ auths:  auths.c cdbs.c cdbs.h
 	gcc -o auths auths.c cdbs.c
 
 clean:
-	rm -f *.dbf *.idx *.dbt *.dat *.txt *.zip
-	git pull
+	rm -f *.dbf *.idx *.dbt *.dat *.txt *.zip *.log
 
 pristine: clean
 	rm -f amdb dfac ant app fac appidx facidx auths
