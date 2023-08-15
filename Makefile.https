@@ -54,16 +54,16 @@ call_sign_history.dat: call_sign_history.zip
 #	touch call_sign_history.dat
 
 application.zip:	
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/application.zip
+	wget --no-check-certificate https://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/application.zip
 	
 facility.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/facility.zip
+	wget --no-check-certificate ftp://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/facility.zip
 
 am_ant_sys.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/am_ant_sys.zip
+	wget --no-check-certificate https://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/am_ant_sys.zip
 
 call_sign_history.zip:
-	wget ftp://ftp.fcc.gov/pub/Bureaus/MB/Databases/cdbs/call_sign_history.zip
+	wget --no-check-certificate https://transition.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/call_sign_history.zip
 
 amdb:   amdb.c
 	gcc -o amdb amdb.c cdbs.c
@@ -93,7 +93,7 @@ auths:  auths.c cdbs.c cdbs.h
 	gcc -o auths auths.c cdbs.c
 
 clean:
-	rm -f *.dbf *.idx *.dbt *.dat *.txt *.zip
+	rm -f *.dbf *.idx *.dat *.txt *.zip
 	git pull
 
 pristine: clean
