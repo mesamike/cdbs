@@ -9,9 +9,9 @@ all:	dfac.dat amdb.dat
 
 delimited:
 	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt
-	cat update.txt > /home/gentoo/radio/cdbs/amdb.txt
-	echo "FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST" >> /home/gentoo/radio/cdbs/amdb.txt
-	cat amdb.dat >> /home/gentoo/radio/cdbs/amdb.txt
+	cat update.txt > amdb.txt
+	echo "FAC_ID|FREQ|CALL|STATE|COL|PWR_D|PWR_N|PWR_C|LAT|LON|STATUS|CALL_HIST" >> amdb.txt
+	cat amdb.dat >> amdb.txt
 
 dfac.dat: dfac facility.dat call_sign_history.dat
 	./dfac > dfac.dat
@@ -96,8 +96,8 @@ auths:  auths.c cdbs.c cdbs.h
 	gcc -o auths auths.c cdbs.c
 
 clean:
-	mv amdb.dat amdb.dat.old
-	mv dfac.dat dfac.dat.old
+	([ -f amdb.dat ] && mv amdb.dat amdb.dat.old) || touch amdb.dat.old
+	([ -f dfac.dat ] && mv dfac.dat dfac.dat.old) || touch dfac.dat.old
 	rm -f *.dat *.dbf *.idx *.dbt *.txt *.zip *.log
 
 pristine: clean
@@ -105,3 +105,4 @@ pristine: clean
 
 upload: 
 	scp amdb.dat dfac.dat update.txt rebuild gentoo@gentoo.net:~/mivadata/cdbs
+	scp amdb.txt gentoo@gentoo.net:~/radio/cdbs/
