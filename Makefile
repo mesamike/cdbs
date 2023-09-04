@@ -1,11 +1,9 @@
-
-install: fresh
-	scp *.dat update.txt rebuild gentoo@gentoo.net:~/mivadata/cdbs
-
 fresh:	clean all
 
 all:	dfac.dat amdb.dat
 	make delimited
+	$(eval diffstat = $(shell diff amdb.dat amdb.dat.old  2>&1 > /dev/null; echo $$?))
+	@([ ${diffstat} -eq 0 ] && echo no changes) || (echo some changes; make upload)
 	rm  am_ant_sys.dat application.dat  facility.dat call_sign_history.dat
 
 delimited:
@@ -97,8 +95,11 @@ auths:  auths.c cdbs.c cdbs.h
 	gcc -o auths auths.c cdbs.c
 
 clean:
-	rm -f *.dbf *.idx *.dbt *.dat *.txt *.zip *.log
+	mv amdb.dat amdb.dat.old
+	rm -f *.dat *.dbf *.idx *.dbt *.txt *.zip *.log
 
 pristine: clean
-	rm -f amdb dfac ant app fac appidx facidx auths
+	rm -f amdb dfac ant app fac appidx facidx auths *.dat
 
+upload: 
+	scp amdb.dat dfac.dat update.txt rebuild gentoo@gentoo.net:~/mivadata/cdbs
