@@ -3,7 +3,8 @@ fresh:	clean all
 all:	dfac.dat amdb.dat
 	make delimited
 	$(eval diffstat = $(shell diff amdb.dat amdb.dat.old  2>&1 > /dev/null; echo $$?))
-	@([ ${diffstat} -eq 0 ] && echo no changes) || (echo some changes; make upload)
+	$(eval diffstat2 = $(shell diff dfac.dat dfac.dat.old  2>&1 > /dev/null; echo $$?))
+	@([ ${diffstat} -eq 0 ] && [ ${diffstat2} -eq 0 ] && echo no changes) || (echo some changes; make upload)
 	rm  am_ant_sys.dat application.dat  facility.dat call_sign_history.dat
 
 delimited:
@@ -96,6 +97,7 @@ auths:  auths.c cdbs.c cdbs.h
 
 clean:
 	mv amdb.dat amdb.dat.old
+	mv dfac.dat dfac.dat.old
 	rm -f *.dat *.dbf *.idx *.dbt *.txt *.zip *.log
 
 pristine: clean

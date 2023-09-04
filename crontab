@@ -1,3 +1,2 @@
-# */2 * * * * /gem_sw/prod/etc/build/buildserver/scripts/runbuilds.sh > ~/crontab.log 2>&1
-0 4 * * * (cd /home/mikew/web/mivadata/cdbs && make > crontab.log 2>&1)  
+0 4 * * * (cd /home/mikew/projects/radio/cdbs/cdbs && make > crontab.log 2>&1)  
 
