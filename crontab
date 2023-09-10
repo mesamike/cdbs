@@ -1,2 +1,2 @@
-0 4 * * * (cd /home/mikew/projects/radio/cdbs/cdbs && make > crontab.log 2>&1)  
+0 6 * * * (cd /home/mikew/projects/radio/cdbs/cdbs && make > crontab.log 2>&1)  
 
