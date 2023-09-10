@@ -37,7 +37,7 @@ fac.dat: fac facility.dat
 ant.dat: ant am_ant_sys.dat
 	./ant > ant.dat
 
-appl.dat: app app application.dat
+appl.dat: app application.dat
 	./app > appl.dat
 
 am_ant_sys.dat: am_ant_sys.zip
