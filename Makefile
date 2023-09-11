@@ -5,7 +5,6 @@ all:	dfac.dat amdb.dat
 	$(eval diffstat = $(shell diff amdb.dat amdb.dat.old  2>&1 > /dev/null; echo $$?))
 	$(eval diffstat2 = $(shell diff dfac.dat dfac.dat.old  2>&1 > /dev/null; echo $$?))
 	@([ ${diffstat} -eq 0 ] && [ ${diffstat2} -eq 0 ] && echo no changes) || (echo some changes; make upload)
-	rm  am_ant_sys.dat application.dat  facility.dat call_sign_history.dat
 
 delimited:
 	date -u "+Last Updated %a, %b %d, %Y at %H%M UTC" > update.txt

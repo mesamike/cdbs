@@ -19,6 +19,7 @@ int main ()
       if(!strcmp(ap.app_service, "AM")&& (ap.fac_freq>0) &&
 	  ( !strncmp(ap.app_type, "ML", 2) 
 	  || !strncmp(ap.app_type, "MML", 3) 
+	  || !strncmp(ap.app_type, "STA", 3) 
           || !strncmp(ap.app_type, "L", 1) 
           || !strncmp(ap.app_type, "Z", 1) 
           || !strncmp(ap.app_type, "NP", 2) 

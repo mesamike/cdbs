@@ -22,6 +22,7 @@ int main ()
          !strcmp(fac.fac_country, "US") && 
               (!strcmp(fac.fac_status, "LICEN") || 
                !strcmp(fac.fac_status, "LICSL") || 
+               !strcmp(fac.fac_status, "LICRP") || 
                !strcmp(fac.fac_status, "INTOP") || 
                !strcmp(fac.fac_status, "PTANF") || 
                !strcmp(fac.fac_status, "CPOFF")) &&

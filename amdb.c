@@ -49,10 +49,12 @@ void get_callsigns(int facid)
 
 int print_line(power *pwr, authorization *auth, char *callhist)
 {
-//         printf("%ld|%ld|%04d|%s|%s|%s|", 
          printf("%ld|%04d|%s|%s|%s|", 
-//            auth->app_id, auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
-            auth->fac_id, (unsigned)auth->freq, auth->callsign, auth->state, auth->city);
+            auth->fac_id, 
+            (unsigned)auth->freq, 
+            auth->callsign, 
+            auth->state, 
+            auth->city);
          if(pwr->d) printf("%.0f", pwr->d);
          putchar('|');
          if(pwr->n) printf("%.0f", pwr->n);
