@@ -74,7 +74,7 @@ int print_line(power *pwr, authorization *auth, char *callhist)
 int main ()
 {
    authorization auth, auth2;
-   unsigned long cur_fac_id = 0;
+   unsigned long cur_fac_id = 0, cur_app_id = 0;
    float cur_lat;
    float cur_lon;
    power pwr;
@@ -89,13 +89,13 @@ int main ()
       memcpy(&auth2, &auth, sizeof(authorization));
       parse_authorization(buffer, &auth); 
 
-/*
+#if 0
       if(auth.app_id != cur_app_id) {
          if(cur_app_id) print_line(&pwr, &auth2, callhistory);
          cur_app_id = auth.app_id;
          bzero(&pwr, sizeof(power));
       }
-*/
+#endif
 
       /* workaround for night auths that don't specify coords */ 
       if( (auth.lat==0.0) && (auth.lon ==0.0) ){
